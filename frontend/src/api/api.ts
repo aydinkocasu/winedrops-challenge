@@ -1,5 +1,5 @@
 //const API_BASE_URL = 'http://localhost:3000/wines';
-const API_BASE_URL = 'http://localhost:3000/wines'
+const API_BASE_URL = 'https://winedrops-challenge-be-production.up.railway.app/wines'
 
 
 export enum SortBy {
