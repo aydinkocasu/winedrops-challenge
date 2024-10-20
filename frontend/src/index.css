@@ -1,0 +1,22 @@
+/* Apply a modern sans-serif font globally */
+body {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Optional: Set consistent font styling for all text */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+}

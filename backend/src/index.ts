@@ -1,15 +1,36 @@
 import Fastify from "fastify";
+import { connectDB } from "../db/db";
+import wineRoutes from "./routes/wineRoutes";
+import fastifyCors from "@fastify/cors";
 
-(async () => {
-  const fastify = Fastify({});
+const startServer = async () => {
+  const fastify = Fastify({
+    logger: true
+  });
 
-  fastify.get("/hello", async () => {
-    return { hello: "world" };
+  fastify.register(fastifyCors, {
+    origin: 'http://localhost:5173',
+    methods: ['GET'],
+  });
+
+  fastify.setErrorHandler((error, _, reply) => {
+    fastify.log.error(error);
+    reply.status(500).send({ error: 'Internal Server Error' })
   });
 
   try {
+    const db = await connectDB();
+
+    fastify.decorate('db', db)
+
+    fastify.register(wineRoutes, { prefix: 'wines' })
+
     await fastify.listen({ port: 3000 });
+
+    fastify.log.info('Server running')
   } catch (err) {
     fastify.log.error(err);
   }
-})();
+};
+
+startServer();
