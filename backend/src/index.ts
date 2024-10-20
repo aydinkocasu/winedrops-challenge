@@ -9,7 +9,8 @@ const startServer = async () => {
   });
 
   fastify.register(fastifyCors, {
-    origin: 'http://localhost:5173',
+    //origin: 'http://localhost:5173',
+    origin: 'https://winedrops-challenge-production.up.railway.app',
     methods: ['GET'],
   });
 
