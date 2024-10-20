@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import FilterButtons from '../components/filterButtons';
 import './bestSellingWine.css';
-import { defaultShouldDehydrateQuery, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchBestSellingWines, SearchParams, SortBy } from '../api/api';
 
 // Define proper Wine type
@@ -17,15 +17,15 @@ type Wine = {
 };
 
 const BestSellingWine = () => {
-  const [sortBy, setSortBy] = useState<SortBy>(SortBy.REVENUE); // Default sorting by revenue
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.REVENUE);
   const [searchQuery, setSearchQuery] = useState<SearchParams>({ name: '', vintage: '' });
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<SearchParams>(searchQuery);  // Debounced search query
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<SearchParams>(searchQuery);
 
-  // Use React Query to fetch best-selling wines
+  // Use React Query to fetch bestselling wines
   const { data, error, isLoading } = useQuery({
-    queryKey: ['bestSellingWines', sortBy, debouncedSearchQuery],  // query key
-    queryFn: () => fetchBestSellingWines(sortBy, debouncedSearchQuery),  // query function
-    staleTime: 1000 * 60 * 5,  // options
+    queryKey: ['bestSellingWines', sortBy, debouncedSearchQuery],
+    queryFn: () => fetchBestSellingWines(sortBy, debouncedSearchQuery),
+    staleTime: 1000 * 60 * 5,
   });
 
   const changeFilter = (sortSetting: SortBy) => {
