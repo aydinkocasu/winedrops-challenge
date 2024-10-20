@@ -25,7 +25,7 @@ const startServer = async () => {
 
     fastify.register(wineRoutes, { prefix: 'wines' })
 
-    await fastify.listen({ port: 3000 });
+    await fastify.listen({ port: 3000, host: '0.0.0.0' });
 
     fastify.log.info('Server running')
   } catch (err) {
