@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import FilterButtons from '../components/filterButtons';
-import './bestSellingWine.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBestSellingWines, SearchParams, SortBy } from '../api/api';
 
